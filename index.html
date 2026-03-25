@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书运营密码 - 全景学习平台</title>
+    <link href="https://fonts.googleapis.com/css2?family=Microsoft+YaHei:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #22223b;
+            --secondary: #4a4e69;
+            --accent: #9a8c98;
+            --light: #c9ada7;
+            --bg: #f2e9e4;
+            --gradient: linear-gradient(135deg, #22223b 0%, #4a4e69 100%);
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: var(--bg);
+            color: var(--primary);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(34, 34, 59, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0 20px;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        .nav-logo {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 5px;
+            overflow-x: auto;
+            max-width: calc(100% - 200px);
+            scrollbar-width: none;
+        }
+
+        .nav-links::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(154, 140, 152, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(154, 140, 152, 0.3);
+            color: var(--light);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(154, 140, 152, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            color: #fff;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero-desc {
+            font-size: 20px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(154, 140, 152, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            border-color: #fff;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 5px;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-number {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .section-desc {
+            font-size: 16px;
+            color: var(--secondary);
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 5px 30px rgba(34, 34, 59, 0.08);
+            transition: all 0.3s;
+            border: 1px solid rgba(34, 34, 59, 0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(34, 34, 59, 0.12);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .card-text {
+            font-size: 14px;
+            color: var(--secondary);
+            line-height: 1.7;
+        }
+
+        .card-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .card-list li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 14px;
+            color: var(--secondary);
+            border-bottom: 1px solid rgba(74, 78, 105, 0.1);
+        }
+
+        .card-list li:last-child {
+            border-bottom: none;
+        }
+
+        .card-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Content Blocks */
+        .content-block {
+            background: #fff;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 30px rgba(34, 34, 59, 0.08);
+        }
+
+        .content-block h3 {
+            font-size: 22px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        /* Process Steps */
+        .process-steps {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            max-width: 280px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px 25px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 30px rgba(34, 34, 59, 0.08);
+        }
+
+        .process-step::after {
+            content: '→';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: var(--accent);
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        .process-num {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            margin: 0 auto 15px;
+        }
+
+        .process-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .process-desc {
+            font-size: 13px;
+            color: var(--secondary);
+        }
+
+        /* Tables */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th {
+            background: var(--primary);
+            color: #fff;
+            padding: 15px 20px;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(74, 78, 105, 0.1);
+        }
+
+        tr:nth-child(even) {
+            background: rgba(242, 233, 228, 0.5);
+        }
+
+        tr:hover {
+            background: rgba(154, 140, 152, 0.1);
+        }
+
+        /* AI Prompts Section */
+        .ai-section {
+            background: var(--gradient);
+            padding: 80px 20px;
+            margin: 60px 0;
+        }
+
+        .ai-section .section-title {
+            color: #fff;
+        }
+
+        .ai-section .section-desc {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .prompt-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .prompt-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .prompt-category {
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .prompt-title {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .prompt-text {
+            color: rgba(255,255,255,0.8);
+            font-size: 13px;
+            line-height: 1.6;
+            background: rgba(0,0,0,0.2);
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .prompt-text:hover {
+            background: rgba(0,0,0,0.3);
+        }
+
+        .prompt-text.copied {
+            background: rgba(154, 140, 152, 0.3);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #22223b 0%, #3a3d5c 100%);
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 36px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .cta-desc {
+            font-size: 18px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 40px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(34, 34, 59, 0.3);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            background: var(--secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero-desc {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .stats {
+                gap: 30px;
+            }
+
+            .process-step::after {
+                display: none;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Highlight box */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(154, 140, 152, 0.15) 0%, rgba(201, 173, 167, 0.15) 100%);
+            border-left: 4px solid var(--accent);
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: var(--primary);
+            font-size: 15px;
+        }
+
+        /* Tag */
+        .tag {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                📕 小红书<span>运营密码</span>
+            </div>
+            <div class="nav-links">
+                <a href="#hero" class="nav-link active">首页</a>
+                <a href="#positioning" class="nav-link">定位密码</a>
+                <a href="#content" class="nav-link">内容密码</a>
+                <a href="#keywords" class="nav-link">关键词密码</a>
+                <a href="#traffic" class="nav-link">流量密码</a>
+                <a href="#level" class="nav-link">等级密码</a>
+                <a href="#monetize" class="nav-link">变现密码</a>
+                <a href="#team" class="nav-link">团队密码</a>
+                <a href="#rules" class="nav-link">运营红线</a>
+                <a href="#ai-prompts" class="nav-link">AI提示词</a>
+            </div>
+            <a href="小红书运营密码.pptx" class="nav-cta" download>下载PPT</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🚀 完整方法论体系</div>
+            <h1>小红书<span>运营密码</span></h1>
+            <p class="hero-desc">基于小红书平台从零到爆款、从变现到规模化的完整方法论体系，助你掌握流量获取与商业变现的核心秘密</p>
+            <div class="hero-buttons">
+                <a href="#positioning" class="btn-primary">开始学习 →</a>
+                <a href="小红书运营密码.pptx" class="btn-secondary" download>📥 下载演示文稿</a>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">核心模块</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">实操方法</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label">AI提示词</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">可落地执行</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 1: Positioning -->
+    <section class="section" id="positioning">
+        <div class="section-header">
+            <div class="section-number">01</div>
+            <h2 class="section-title">定位密码</h2>
+            <p class="section-desc">找到你的专属赛道，明确账号发展方向</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">❓</div>
+                <h3 class="card-title">定位三问法</h3>
+                <p class="card-text">在开始创作之前，必须回答三个问题找到你的定位方向：</p>
+                <ul class="card-list">
+                    <li><strong>第一问：</strong>你被人夸过什么？找出反复出现的夸赞点</li>
+                    <li><strong>第二问：</strong>别人是否愿意为夸你的点付费？检验商业价值</li>
+                    <li><strong>第三问：</strong>你为什么东西付出最多？持续投入的领域</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>💡 <strong>三问交集：</strong>找到三个问题的共同答案，这就是你的定位方向</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3 class="card-title">10-3-1 聚焦法</h3>
+                <p class="card-text">找到定位方向后，用这个方法锁定细分赛道：</p>
+                <div class="process-steps" style="margin-top: 20px;">
+                    <div class="process-step" style="max-width: 150px; padding: 20px;">
+                        <div class="process-num">10</div>
+                        <div class="process-title">广泛尝试</div>
+                        <div class="process-desc">3个领域各写10篇</div>
+                    </div>
+                    <div class="process-step" style="max-width: 150px; padding: 20px;">
+                        <div class="process-num">3</div>
+                        <div class="process-title">筛选方向</div>
+                        <div class="process-desc">锁定数据最好的3篇</div>
+                    </div>
+                    <div class="process-step" style="max-width: 150px; padding: 20px;">
+                        <div class="process-num">1</div>
+                        <div class="process-title">深挖细分</div>
+                        <div class="process-desc">确定唯一主攻方向</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3 class="card-title">账号生命周期</h3>
+                <p class="card-text">账号发展分为四个阶段：</p>
+                <ul class="card-list">
+                    <li><strong>迷茫期：</strong>不知道做什么 → 用定位三问找到方向</li>
+                    <li><strong>定位期：</strong>方向模糊 → 用10-3-1锁定赛道</li>
+                    <li><strong>内容期：</strong>持续输出 → 循环创作笔记</li>
+                    <li><strong>爆款期：</strong>出现爆款 → 复盘放大</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>⚡ 触发爆款期后，必须执行五大复盘步骤，然后回到内容期继续迭代</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Content -->
+    <section class="section" id="content" style="background: rgba(34, 34, 59, 0.03);">
+        <div class="section-header">
+            <div class="section-number">02</div>
+            <h2 class="section-title">内容密码</h2>
+            <p class="section-desc">爆款笔记的诞生公式，让你的内容脱颖而出</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">📝</div>
+                <h3 class="card-title">选题标准</h3>
+                <div class="highlight-box">
+                    <p>🔥 <strong>硬性要求：</strong>选题必须来自爆款库，互动量 >5000 的笔记才是合格选题</p>
+                </div>
+                <p class="card-text">选题来源：</p>
+                <ul class="card-list">
+                    <li>在搜索框输入领域关键词</li>
+                    <li>筛选"最热"笔记</li>
+                    <li>提取前10篇的共同关键词</li>
+                    <li>收录进爆款选题库</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">✍️</div>
+                <h3 class="card-title">8种爆款标题模式</h3>
+                <p class="card-text">掌握这些标题公式，让你的笔记点击率飙升：</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px;">
+                    <span class="tag">数字法</span>
+                    <span class="tag">价值法</span>
+                    <span class="tag">优惠法</span>
+                    <span class="tag">冲突法</span>
+                    <span class="tag">悬念法</span>
+                    <span class="tag">对比法</span>
+                    <span class="tag">对号入座</span>
+                    <span class="tag">人群法</span>
+                </div>
+                <div class="highlight-box">
+                    <p>📏 <strong>字数要求：</strong>标题 ≤20字，最佳 16-18字</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🖼️</div>
+                <h3 class="card-title">封面公式</h3>
+                <p class="card-text"><strong>拼图规格：</strong></p>
+                <ul class="card-list">
+                    <li><strong>9张拼接</strong> - 适合攻略类</li>
+                    <li><strong>6张拼接</strong> - 适合合集类</li>
+                    <li><strong>4张拼接</strong> - 适合对比类</li>
+                </ul>
+                <p class="card-text" style="margin-top: 15px;"><strong>花字规则：</strong>颜色鲜艳醒目、重点用红色突出、文字简洁有力</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <h3 class="card-title">三段式内容模板</h3>
+                <p class="card-text"><strong>【开头】</strong>公式：重复关键词 + 建立联系 + 强调词</p>
+                <p class="card-text"><strong>【中间】</strong>公式：过渡句 + 表情 + "·"分段</p>
+                <p class="card-text"><strong>【结尾】</strong>公式：号召互动 + @官方号 + 话题标签</p>
+                <div class="highlight-box">
+                    <p>📊 <strong>字数要求：</strong>正文 500-800字，图片 3-9张</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <h3 style="text-align: center; margin-bottom: 30px; font-size: 24px;">⏰ 4个高峰发布时段</h3>
+            <div class="card-grid" style="max-width: 1000px; margin: 0 auto;">
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 10px;">☀️</div>
+                    <h4 style="color: var(--primary);">工作日午间</h4>
+                    <p style="color: var(--accent); font-size: 20px; font-weight: 700;">12:00-13:30</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 10px;">🌅</div>
+                    <h4 style="color: var(--primary);">工作日下班</h4>
+                    <p style="color: var(--accent); font-size: 20px; font-weight: 700;">18:00-19:30</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 10px;">🌤️</div>
+                    <h4 style="color: var(--primary);">周末上午</h4>
+                    <p style="color: var(--accent); font-size: 20px; font-weight: 700;">10:00-11:00</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 10px;">🌙</div>
+                    <h4 style="color: var(--primary);">周末晚间</h4>
+                    <p style="color: var(--accent); font-size: 20px; font-weight: 700;">20:00-21:00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Keywords -->
+    <section class="section" id="keywords">
+        <div class="section-header">
+            <div class="section-number">03</div>
+            <h2 class="section-title">关键词密码</h2>
+            <p class="section-desc">让算法找到你，提升搜索排名和曝光量</p>
+        </div>
+
+        <div class="content-block">
+            <h3>📊 四类关键词</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>类型</th>
+                            <th>定义</th>
+                            <th>示例</th>
+                            <th>竞争度</th>
+                            <th>适用阶段</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>行业领域词</strong></td>
+                            <td>大领域词</td>
+                            <td>教育、美妆</td>
+                            <td><span class="tag" style="background: #d90429;">极高</span></td>
+                            <td>成熟期(粉丝>5000)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>细分领域词</strong></td>
+                            <td>二级细分</td>
+                            <td>小学数学、护肤成分</td>
+                            <td><span class="tag">中</span></td>
+                            <td>成长期首选</td>
+                        </tr>
+                        <tr>
+                            <td><strong>产品营销词</strong></td>
+                            <td>竞品/产品</td>
+                            <td>兰蔻粉底液</td>
+                            <td><span class="tag" style="background: #ef233c;">高</span></td>
+                            <td>变现期</td>
+                        </tr>
+                        <tr>
+                            <td><strong>营销需求词</strong></td>
+                            <td>场景/痛点</td>
+                            <td>必备、合集、如何</td>
+                            <td><span class="tag">中</span></td>
+                            <td>全周期</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="highlight-box">
+                <p>💡 <strong>新手选择：</strong>优先选细分领域关键词，竞争适中，精准用户</p>
+            </div>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">📍</div>
+                <h3 class="card-title">关键词布局</h3>
+                <ul class="card-list">
+                    <li><strong>标题：</strong>必须含1-2个核心关键词</li>
+                    <li><strong>正文：</strong>重复3-5次关键词</li>
+                    <li><strong>图片标签：</strong>添加2-4个标签关键词</li>
+                    <li><strong>话题标签：</strong>添加3-5个话题标签</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔍</div>
+                <h3 class="card-title">搜索排名优化</h3>
+                <p class="card-text">排名由三个因素决定：</p>
+                <ul class="card-list">
+                    <li><strong>搜索热度：</strong>选择高热度关键词</li>
+                    <li><strong>内容贴合度：</strong>确保关键词与内容高度相关</li>
+                    <li><strong>关键词布局：</strong>标题、正文、标签都要布局</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>⚡ 关键词与内容贴合度 ≥0.7</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Traffic -->
+    <section class="section" id="traffic" style="background: rgba(34, 34, 59, 0.03);">
+        <div class="section-header">
+            <div class="section-number">04</div>
+            <h2 class="section-title">流量密码</h2>
+            <p class="section-desc">穿透流量池的层级跃迁，让你的笔记获得更多曝光</p>
+        </div>
+
+        <div class="content-block">
+            <h3>🏊 流量池机制</h3>
+            <p class="card-text">小红书采用层级流量池制度，笔记需要逐级突破：</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>层级</th>
+                            <th>曝光量</th>
+                            <th>互动量阈值</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>L1 初始池</strong></td>
+                            <td>100-300</td>
+                            <td>≥300</td>
+                            <td>初始流量</td>
+                        </tr>
+                        <tr>
+                            <td><strong>L2 初级池</strong></td>
+                            <td>1000-3000</td>
+                            <td>≥1000</td>
+                            <td>小爆款</td>
+                        </tr>
+                        <tr>
+                            <td><strong>L3 中级池</strong></td>
+                            <td>10000+</td>
+                            <td>≥5000</td>
+                            <td>爆款</td>
+                        </tr>
+                        <tr>
+                            <td><strong>L4 高级池</strong></td>
+                            <td>100000+</td>
+                            <td>≥10000+</td>
+                            <td>大爆款</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">📈</div>
+                <h3 class="card-title">笔记升级路径</h3>
+                <ul class="card-list">
+                    <li><strong>Step 1：</strong>发布后进入初始流量池</li>
+                    <li><strong>Step 2：</strong>人工干预(≥10人互动)触发初始评判</li>
+                    <li><strong>Step 3：</strong>突破L1阈值(互动量≥300)</li>
+                    <li><strong>Step 4：</strong>逐级跃迁(L1≥1000 → L2 → L3...)</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>⚠️ <strong>停止推荐条件：</strong>某层级互动量低于阈值</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3 class="card-title">社交裂变机制</h3>
+                <p class="card-text">当收藏量或分享量 >10000 时，触发社交裂变推荐，获得额外曝光。</p>
+                <p class="card-text"><strong>触发条件：</strong></p>
+                <ul class="card-list">
+                    <li>被同领域大V点赞 → 推荐给大V粉丝</li>
+                    <li>收藏量>10000 → 首页发现页曝光</li>
+                    <li>分享量>10000 → 首页发现页曝光</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🚪</div>
+                <h3 class="card-title">流量入口分布</h3>
+                <ul class="card-list">
+                    <li><strong>发现入口：</strong>大数据个性化推荐（主渠道）</li>
+                    <li><strong>关注入口：</strong>粉丝信息流（粉丝积累后）</li>
+                    <li><strong>搜索入口：</strong>关键词匹配（关键词优化后）</li>
+                    <li><strong>位置入口：</strong>同城推荐（同城业务）</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Level -->
+    <section class="section" id="level">
+        <div class="section-header">
+            <div class="section-number">05</div>
+            <h2 class="section-title">等级密码</h2>
+            <p class="section-desc">账号权重的积累法则，等级越高流量越多</p>
+        </div>
+
+        <div class="content-block">
+            <h3>🏆 账号等级体系</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>等级</th>
+                            <th>升级条件</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>🥛 尿布薯</td><td>1篇笔记+1互动</td></tr>
+                        <tr><td>🍼 奶瓶薯</td><td>1篇+5收藏/10赞</td></tr>
+                        <tr><td>😴 困困薯</td><td>3篇+5收藏/10赞</td></tr>
+                        <tr><td>🫧 泡泡薯</td><td>5篇+10收藏/50赞+1篇话题视频</td></tr>
+                        <tr><td>🍦 甜筒薯</td><td>12篇+10收藏/50赞+3篇话题视频</td></tr>
+                        <tr><td>🐴 小马薯</td><td>50篇+10收藏/50赞+5篇话题视频</td></tr>
+                        <tr><td>📚 文化薯</td><td>100篇 或 9篇话题视频</td></tr>
+                        <tr><td>🥉 铜冠薯</td><td>300篇 或 12篇话题视频</td></tr>
+                        <tr><td>🥈 银冠薯</td><td>500篇 或 15篇话题视频</td></tr>
+                        <tr><td>🥇 金冠薯</td><td>800篇 或 18篇话题视频</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">⚖️</div>
+                <h3 class="card-title">账号权重计算</h3>
+                <div class="highlight-box" style="font-size: 16px;">
+                    <p><strong>账号权重 = 等级系数 × (粉丝量权重 + 互动量权重 + 爆款权重)</strong></p>
+                </div>
+                <ul class="card-list">
+                    <li><strong>等级系数：</strong>尿布薯 1.0 → 金冠薯 3.0</li>
+                    <li><strong>粉丝量权重：</strong>log(粉丝数+1) × 0.3</li>
+                    <li><strong>互动量权重：</strong>平均互动量 × 0.5</li>
+                    <li><strong>爆款权重：</strong>爆款笔记数 × 10</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">💡</div>
+                <h3 class="card-title">等级特权</h3>
+                <ul class="card-list">
+                    <li><strong>尿布薯-困困薯：</strong>基础发布</li>
+                    <li><strong>泡泡薯-甜筒薯：</strong>视频笔记权益</li>
+                    <li><strong>小马薯-文化薯：</strong>流量倾斜</li>
+                    <li><strong>铜冠薯-金冠薯：</strong>高权重推荐</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>⚡ 等级越高，初始推荐权重越大，同样内容的曝光量差异可达 <strong>3倍</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Monetization -->
+    <section class="section" id="monetize" style="background: rgba(34, 34, 59, 0.03);">
+        <div class="section-header">
+            <div class="section-number">06</div>
+            <h2 class="section-title">变现密码</h2>
+            <p class="section-desc">找到你的盈利模式，实现内容变现</p>
+        </div>
+
+        <div class="content-block">
+            <h3>💰 粉丝量阈值与变现方式</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>粉丝量</th>
+                            <th>变现方式</th>
+                            <th>附加条件</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>0-1000</strong></td><td>交换物品变现</td><td>垂直领域即可，无费置换</td></tr>
+                        <tr><td><strong>1000-5000</strong></td><td>商品合作/替换广告</td><td>需实名认证</td></tr>
+                        <tr><td><strong>≥5000</strong></td><td>品牌合作</td><td>需专业号认证+蒲公英平台</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🎁</div>
+                <h3 class="card-title">模式一：交换物品变现</h3>
+                <p class="card-text"><strong>条件：</strong>垂直领域账号</p>
+                <p class="card-text"><strong>方式：</strong>品牌寄送产品，创作者真实测评</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📝</div>
+                <h3 class="card-title">模式二：替换广告</h3>
+                <p class="card-text"><strong>条件：</strong>已有爆款笔记</p>
+                <p class="card-text"><strong>方式：</strong>修改博主原有笔记植入广告</p>
+                <p class="card-text"><strong>报价：</strong>0.1-1元 × 阅读量</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🛒</div>
+                <h3 class="card-title">模式三：商品合作</h3>
+                <p class="card-text"><strong>条件：</strong>实名认证</p>
+                <p class="card-text"><strong>方式：</strong>发布专属商品笔记</p>
+                <p class="card-text"><strong>分成：</strong>佣金分成，小红书抽成</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🤝</div>
+                <h3 class="card-title">模式四：品牌合作</h3>
+                <p class="card-text"><strong>条件：</strong>专业号认证+蒲公英平台</p>
+                <p class="card-text"><strong>报价：</strong>1000元/万粉（基础价）</p>
+                <p class="card-text"><strong>计算：</strong>基础价 × 账号质量系数(0.8-1.5) × 笔记数据系数(0.5-2.0)</p>
+            </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top: 30px; text-align: center;">
+            <p style="font-size: 18px;">💎 <strong>变现核心：</strong>广告分成 < 商品合作 < 品牌合作 < 直播带货 < IP授权</p>
+        </div>
+    </section>
+
+    <!-- Section 7: Team -->
+    <section class="section" id="team">
+        <div class="section-header">
+            <div class="section-number">07</div>
+            <h2 class="section-title">团队密码</h2>
+            <p class="section-desc">从单打独斗到规模化运营，实现团队化运作</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">👥</div>
+                <h3 class="card-title">招聘心法</h3>
+                <p class="card-text"><strong>只招两种人：</strong></p>
+                <ul class="card-list">
+                    <li><strong>可塑型（0分）：</strong>经验少但有潜力，严格指导，执行命令</li>
+                    <li><strong>成熟型（8分）：</strong>有经验有能力，给予空间，项目制交付</li>
+                </ul>
+                <p class="card-text"><strong>拒绝：</strong>半懂型（4-5分）- 投入产出比低</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📚</div>
+                <h3 class="card-title">培训心法：三遍拆解法</h3>
+                <p class="card-text">每个员工必须拆解 ≥30篇爆款</p>
+                <ul class="card-list">
+                    <li><strong>第一遍：</strong>用户视角 - 检查吸引力、要点提取、点赞冲动</li>
+                    <li><strong>第二遍：</strong>打标签 - 一级(领域)、二级(细分)、三级(具体)</li>
+                    <li><strong>第三遍：</strong>评论区分析 - Top10评论挖掘用户需求</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏁</div>
+                <h3 class="card-title">赛马机制</h3>
+                <p class="card-text"><strong>核心：</strong>A组 vs B组，2周一轮，优胜劣汰</p>
+                <ul class="card-list">
+                    <li>初始分组 → 赛马周期2周</li>
+                    <li>评估爆款率高低</li>
+                    <li>落后组暂停反思 + 人员调动</li>
+                    <li>优胜组保持状态</li>
+                    <li>归一：优胜组吞并落后组 → 重组新一轮赛马</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3 class="card-title">分层管理</h3>
+                <ul class="card-list">
+                    <li><strong>头部（20%）：</strong>放手管理，月度汇报，保持创新</li>
+                    <li><strong>中部（60%）：</strong>全力帮助，周会指导，每日拆解</li>
+                    <li><strong>尾部（20%）：</strong>激励+纠正，日会，强制模仿</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>📐 公式：痛苦+反思+实践=进步</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Rules -->
+    <section class="section" id="rules" style="background: rgba(34, 34, 59, 0.03);">
+        <div class="section-header">
+            <div class="section-number">08</div>
+            <h2 class="section-title">运营红线</h2>
+            <p class="section-desc">必须遵守的禁规则，避免账号受损</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">📝</div>
+                <h3 class="card-title">内容红线</h3>
+                <ul class="card-list">
+                    <li><strong>C01：</strong>选题互动量必须>5000才可作为爆款参考</li>
+                    <li><strong>C02：</strong>标题≤20字，最佳16-18字</li>
+                    <li><strong>C03：</strong>内容500-800字</li>
+                    <li><strong>C04：</strong>发布时间必须在4个高峰时段</li>
+                    <li><strong>C05：</strong>人工干预人数≥10人</li>
+                    <li><strong>C07：</strong>关键词贴合度≥0.7</li>
+                    <li><strong>C08：</strong>相似度≥70%模仿爆款</li>
+                    <li><strong>S04：</strong>内容需"好看+实用"</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚠️</div>
+                <h3 class="card-title">运营红线</h3>
+                <ul class="card-list">
+                    <li><strong>S01：</strong>禁止多领域运营，必须垂直</li>
+                    <li><strong>S02：</strong>禁止自我陶醉，从用户视角出发</li>
+                    <li><strong>C06：</strong>行动计划≤3条</li>
+                    <li><strong>C09：</strong>只招0分或8分人员</li>
+                    <li><strong>C10：</strong>复盘数据统一在24h统计</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Prompts Section -->
+    <section class="ai-section" id="ai-prompts">
+        <div class="section-header">
+            <div class="section-number">AI</div>
+            <h2 class="section-title">AI助手提示词速查</h2>
+            <p class="section-desc">一键复制提示词，高效使用AI工具</p>
+        </div>
+
+        <div class="prompt-grid">
+            <div class="prompt-card">
+                <div class="prompt-category">内容创作</div>
+                <div class="prompt-title">定位三问法</div>
+                <div class="prompt-text" onclick="copyText(this)">"分析以下三个问题的答案，找出交集，生成定位方向建议：[粘贴三个问题答案]"</div>
+            </div>
+            <div class="prompt-card">
+                <div class="prompt-category">内容创作</div>
+                <div class="prompt-title">选题阶段</div>
+                <div class="prompt-text" onclick="copyText(this)">"搜索[领域]爆款笔记，筛选互动>5000的选题，建立选题库并分析关键词竞争度"</div>
+            </div>
+            <div class="prompt-card">
+                <div class="prompt-category">内容创作</div>
+                <div class="prompt-title">标题阶段</div>
+                <div class="prompt-text" onclick="copyText(this)">"分析以下爆款标题特征，生成10个适配[选题]的备选标题：[粘贴爆款标题]"</div>
+            </div>
+            <div class="prompt-card">
+                <div class="prompt-category">内容创作</div>
+                <div class="prompt-title">内容阶段</div>
+                <div class="prompt-text" onclick="copyText(this)">"基于[选题]和[关键词]，按照三段式模板生成500字正文，带emoji和话题标签"</div>
+            </div>
+            <div class="prompt-card">
+                <div class="prompt-category">流量分析</div>
+                <div class="prompt-title">收录评判</div>
+                <div class="prompt-text" onclick="copyText(this)">"当笔记发布2小时后数据：点赞X、收藏X、评论X，分析是否达到L1阈值并建议干预策略"</div>
+            </div>
+            <div class="prompt-card">
+                <div class="prompt-category">复盘系列</div>
+                <div class="prompt-title">五大复盘</div>
+                <div class="prompt-text" onclick="copyText(this)">"根据以下数据生成复盘报告：目标[X]，实际[X]，列出原因分析、经验总结、≤3条行动计划"</div>
+            </div>
+            <div class="prompt-card">
+                <div class="prompt-category">变现系列</div>
+                <div class="prompt-title">品牌合作报价</div>
+                <div class="prompt-text" onclick="copyText(this)">"基础价1000元/万粉，账号质量系数[X]，近期爆款比例[X]，计算最优报价"</div>
+            </div>
+            <div class="prompt-card">
+                <div class="prompt-category">团队管理</div>
+                <div class="prompt-title">招聘筛选</div>
+                <div class="prompt-text" onclick="copyText(this)">"根据以下简历生成笔试题库和评分标准：[粘贴简历]，评估是否录用"</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">🎯 掌握小红书运营密码</h2>
+            <p class="cta-desc">垂直专注是基础，爆款选题是核心，内容质量是生命，变现闭环是目标</p>
+            <div class="hero-buttons">
+                <a href="小红书运营密码.pptx" class="btn-primary" download>📥 下载演示文稿</a>
+                <a href="#hero" class="btn-secondary">↑ 返回顶部</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">© 2026 小红书运营密码 | 基于平台从零到爆款、从变现到规模化的完整方法论体系</p>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <div class="scroll-top" onclick="scrollToTop()">↑</div>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Active nav link
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Show/hide scroll top
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Copy text
+        function copyText(el) {
+            const text = el.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                el.classList.add('copied');
+                el.textContent = '✓ 已复制到剪贴板';
+                setTimeout(() => {
+                    el.classList.remove('copied');
+                    el.textContent = text;
+                }, 2000);
+            });
+        }
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .content-block, .process-step').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
